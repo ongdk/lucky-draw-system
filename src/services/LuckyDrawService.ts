@@ -23,10 +23,17 @@ const draw = async (username: string) => {
 
   if (prize.id !== "NO_PRIZE") {
     // check whether prize quota has been reached if a prize is drawn
-    const remainingQuota = await Redis.decr(getPrizeQuotaKey(prize.id));
-    if (remainingQuota < 0) {
-      // when daily quota has been reached, treat result the same as NO_PRIZE
-      prize = { id: "NO_PRIZE" };
+    const key = getPrizeQuotaKey(prize.id);
+    const exists = await Redis.exists(key);
+
+    // if key exists, it means theres a quota to this prize
+    if (exists) {
+      const remainingQuota = await Redis.decr(key);
+
+      if (remainingQuota < 0) {
+        // when daily quota has been reached, treat result the same as NO_PRIZE
+        prize = { id: "NO_PRIZE" };
+      }
     }
   }
 

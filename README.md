@@ -14,34 +14,17 @@ A cron job is scheduled to run at midnight everyday to re-calculate the prize qu
 
 ## Setup
 
-1. Start redis and postgres containers with Docker compose using the following command:
+1. Create a `.env` file according to the `.env.example`
+2. Start redis, postgres and server containers with Docker compose using the following command:
 
 ```
-docker-compose up -d
+docker compose up --build -d
 ```
 
-2. Create a .env file according to the .env.example
-
-3a. Start the server in dev mode
+3. To stop redis and postgres
 
 ```
-npm install -g nodemon
-npm install
-npm run dev
-```
-
-3b. Start the server in production env
-
-```
-npm install
-npm run build
-npm start
-```
-
-4. To stop redis and postgres
-
-```
-docker-compose down
+docker compose down
 ```
 
 ## API endpoints
