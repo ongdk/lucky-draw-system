@@ -20,7 +20,9 @@ A cron job is scheduled to run at midnight everyday to re-calculate the prize qu
 docker-compose up -d
 ```
 
-2a. Start the server in dev mode
+2. Create a .env file according to the .env.example
+
+3a. Start the server in dev mode
 
 ```
 npm install -g nodemon
@@ -28,7 +30,7 @@ npm install
 npm run dev
 ```
 
-2b. Start the server in production env
+3b. Start the server in production env
 
 ```
 npm install
@@ -36,7 +38,7 @@ npm run build
 npm start
 ```
 
-3. To stop redis and postgres
+4. To stop redis and postgres
 
 ```
 docker-compose down
