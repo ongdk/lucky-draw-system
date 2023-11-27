@@ -1,5 +1,17 @@
 # Lucky Draw System
 
+## Description
+
+Lucky draw system created with Express.js, Postgres and Redis.
+
+The Postgres DB contains two tables: Prize and Result.
+Prize table contains configurations for each prize, including probabilities, daily and total quotas.
+Result table contains lucky draw results.
+
+Redis is used for tracking remaining quota for each prize on each day and for tracking whether a user has already participated in the lucky draw on that day.
+
+A cron job is scheduled to run at midnight everyday to re-calculate the prize quotas stored in Redis.
+
 ## Setup
 
 1. Start redis and postgres containers with Docker compose using the following command:
